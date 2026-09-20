@@ -1,0 +1,25 @@
+id: L1-O01
+description: Au(73nm)/graphite offsetfit (in-plane k + TBC)
+data_file: L1O01benchmark_Au_Gr_XScan.txt
+timeout: 600
+outputs:
+  - file: result.yaml
+    compare: keyvalue
+    tolerance: 0.005
+    groundtruth:
+      Sr_2: 1851.5
+      TBC_1: 32900000.0
+    units:
+      Sr_2: W m-1 K-1
+      TBC_1: W m-2 K-1
+prompt: >
+  I have an offset-dependent FDTR dataset measured on an Au/graphite sample.
+  The sample consists of a 73 nm Au transducer on a semi-infinite graphite substrate.
+  The thermal conductivity and volumetric heat capacity of Au are 200 W m-1 K-1 and 2.49 MJ m-3 K-1.
+  The graphite substrate has an out-of-plane thermal conductivity of 6 W m-1 K-1
+  and a volumetric heat capacity of 1.65 MJ m-3 K-1.
+  The effective spot size is 3 um.
+  Please use the provided offset-scan data at frequency of 0.3 MHz at /app/data/L1O01benchmark_Au_Gr_XScan.txt
+  to fit the in-plane thermal conductivity of graphite and the thermal conductance of the Au/graphite interface
+  by offset fitting.
+  Proceed directly to run the fit without asking for confirmation.

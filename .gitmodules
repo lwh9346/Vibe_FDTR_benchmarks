@@ -1,0 +1,3 @@
+[submodule "Vibe_FDTR"]
+	path = Vibe_FDTR
+	url = git@github.com:yfwsunny/Vibe_FDTR.git

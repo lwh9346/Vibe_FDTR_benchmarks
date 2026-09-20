@@ -1,0 +1,77 @@
+id: L2-I02
+description: Full iterative fitting workflow + uncertainty (6 iter, room-temp)
+data_dirs:
+  - L2_HOPGA
+timeout: 900
+outputs:
+  - file: result.yaml
+    compare: keyvalue
+    tolerance: 0.005
+    groundtruth:
+      spot_x: 2.7786
+      spot_y: 2.7714
+      Sr_2: 1823.1113
+      Sz_2: 5.9295
+      TBC_1: 94779300.0
+    units:
+      spot_x: um
+      spot_y: um
+      Sr_2: W m-1 K-1
+      Sz_2: W m-1 K-1
+      TBC_1: W m-2 K-1
+  - file: uncertainty.yaml
+    compare: keyvalue
+    tolerance: 0.05
+    groundtruth:
+      spot_x_pct: 0.41
+      spot_y_pct: 0.41
+      Sr_2_pct: 6.32
+      Sz_2_pct: 16.96
+      TBC_1_pct: 10.48
+    units:
+      spot_x_pct: "%"
+      spot_y_pct: "%"
+      Sr_2_pct: "%"
+      Sz_2_pct: "%"
+      TBC_1_pct: "%"
+prompt: >
+  I have room-temperature FDTR data for the Au/graphite sample stored in the folder /app/data/L2_HOPGA.
+  Please use the Gold_film material for Au properties and Graphite_new material for graphite properties.
+  The thickness of Au is 73 nm.
+
+
+  Please perform the following iterative fitting workflow:
+
+
+  1. Use the averaged offset-amplitude data at the highest modulation frequency to fit the spot sizes
+  in the x and y directions. In this step, keep the thermal properties fixed to their current values.
+  For the first iteration, use the nominal thermal properties. For later iterations, use the updated
+  thermal properties from the previous iteration. Calculate the effective spot size as the average of
+  the fitted x- and y-direction spot sizes.
+
+
+  2. Use the fitted x-direction spot size and the averaged x-direction offset-phase data to fit the
+  graphite in-plane thermal conductivity. Choose the data measured at frequency 1 MHz.
+
+
+  3. Use the fitted effective spot size and the averaged phase-frequency data to fit the graphite
+  out-of-plane thermal conductivity and the Au/graphite interfacial thermal conductance.
+
+
+  4. After each iteration, update the fitted spot sizes, graphite in-plane thermal conductivity, graphite
+  out-of-plane thermal conductivity, and Au/graphite interfacial thermal conductance. Repeat steps 1-3 until
+  both the fitted graphite in-plane and out-of-plane thermal conductivities change by less than 1% between
+  two consecutive iterations, or until 6 iterations have been completed.
+
+
+  5. After convergence, calculate the uncertainties of the final fitted thermal parameters. Assume a 5%
+  uncertainty for all fixed parameters. Treat the uncertainty analysis iteratively in the same order as
+  the fitting workflow: first estimate the uncertainty of the fitted spot sizes, then use the spot-size
+  uncertainty when calculating the uncertainty of the graphite in-plane thermal conductivity, and finally
+  use the updated spot-size and in-plane-conductivity uncertainties when calculating the uncertainties of
+  the graphite out-of-plane thermal conductivity and Au/graphite interfacial thermal conductance.
+
+
+  Please report the fitted values from each iteration, the final converged values, the corresponding
+  uncertainties, and the final fitting plots.
+  Proceed directly to run the fit without asking for confirmation.

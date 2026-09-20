@@ -1,0 +1,25 @@
+id: L3-09
+description: Expert auto-exclusion of problematic HOPGA data + freqfit
+data_dirs:
+  - L3_HOPGA
+timeout: 600
+outputs:
+  - file: result.yaml
+    compare: keyvalue
+    tolerance: 0.005
+    groundtruth:
+      Sz_2: 5.8769
+      TBC_1: 96250000.0
+    units:
+      Sz_2: W m-1 K-1
+      TBC_1: W m-2 K-1
+prompt: >
+  I have Au/graphite FDTR data in /app/data/L3_HOPGA.
+  Please use Gold_film for the Au properties and Graphite_new for the graphite properties.
+  The effective spot size is 2.75 um. The thickness of Au is 73 nm.
+  Set the in-plane conductivity of graphite to be 1800 W m-1 K-1.
+  Use the room-temperature phase-frequency data.
+  Work in expert mode, fit the graphite out-of-plane thermal conductivity
+  and the Au/graphite interfacial conductance.
+  Please report the fitted values and output the fitting plot.
+  Proceed directly to run the fit without asking for confirmation.

@@ -1,0 +1,8 @@
+id: L3-08
+description: Co-fitting identifiability for freqfit (Au/SiO2)
+timeout: 600
+prompt: >
+  For an Au/fused silica FDTR sample, I want to know which parameters can be fitted together using
+  only frequency-sweep phase data. Please work in expert mode and evaluate possible combinations
+  involving Au heat capacity, thermal conductivity, Au thickness, spot size, silica heat capacity,
+  conductivity, and TBC.

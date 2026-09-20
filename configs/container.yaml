@@ -1,0 +1,6 @@
+# Vibe-FDTR-Bench 容器镜像配置（纳入版本控制）
+# 按 tier 指定本地构建的 Docker 镜像 tag，与 docker/build.sh 产出的版本一致
+image_tags:
+  full: vibe-fdtr:full-v4.7
+  code: vibe-fdtr:code-v4.7
+  minimal: vibe-fdtr:minimal-v4.7

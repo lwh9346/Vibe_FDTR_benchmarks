@@ -1,0 +1,22 @@
+id: L3-12
+description: Detect wrong transducer thickness (50nm given, actually 70nm)
+data_file: L3benchmark_Au_SiO2.txt
+timeout: 600
+outputs:
+  - file: result.yaml
+    compare: keyvalue
+    tolerance: 0.005
+    groundtruth:
+      S_0: 145.0
+      TBC_1: 85000000.0
+    units:
+      S_0: W m-1 K-1
+      TBC_1: W m-2 K-1
+prompt: >
+  I have a FDTR dataset at /app/data/L3benchmark_Au_SiO2.txt measured on an Au/fused silica sample.
+  Au thickness is 50 nm. The volumetric heat capacity is 2.49 MJ m-3 K-1 for Au and
+  1.65 MJ m-3 K-1 for fused silica. The thermal conductivity of fused silica is 1.38 W m-1 K-1.
+  The effective spot size is 3.0 um.
+  Please work in expert mode and fit the thermal conductivity of gold and the thermal conductance
+  of the Au/fused silica interface.
+  Proceed directly to run the fit without asking for confirmation.

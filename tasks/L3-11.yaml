@@ -1,0 +1,16 @@
+id: L3-11
+description: Self-adjustment of fit range for low-freq noisy data
+data_dirs:
+  - L3_HOPGlowfreq
+timeout: 600
+prompt: >
+  I have FDTR data for an Au/graphite sample stored in the folder /app/data/L3_HOPGlowfreq.
+  The sample consists of an Au transducer on a graphite substrate.
+  Please use Gold_film for the Au properties and Graphite_new for the graphite properties.
+  The effective spot size is 2.75 um. The thickness of Au is 73 nm.
+  Set the in-plane conductivity of graphite to be 1800 W m-1 K-1.
+
+
+  Work in expert mode and fit the graphite out-of-plane thermal conductivity
+  and the Au/graphite interfacial conductance.
+  Proceed directly to run the fit without asking for confirmation.

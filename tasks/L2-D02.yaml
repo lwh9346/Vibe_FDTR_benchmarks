@@ -1,0 +1,27 @@
+id: L2-D02
+description: Averaged phase-offset fitting (60C, X-scan, offset range subset)
+data_dirs:
+  - L2_HOPGA
+timeout: 900
+outputs:
+  - file: result.yaml
+    compare: keyvalue
+    tolerance: 0.005
+    groundtruth:
+      Sr_2: 1606.3138
+      TBC_1: 110820000.0
+    units:
+      Sr_2: W m-1 K-1
+      TBC_1: W m-2 K-1
+prompt: >
+  I have FDTR data for an Au/graphite sample stored in the folder /app/data/L2_HOPGA.
+  Please use the Gold_film material for Au properties and Graphite_new material for graphite properties.
+  The effective spot size is 2.75 um. The thickness of Au is 73 nm.
+  Set the out-of-plane conductivity of graphite to be 5 W m-1 K-1.
+
+
+  Use the averaged phase-offset data for X-direction scan at 60 C.
+  Choose the data measured at frequency 1 MHz and offset range between -13 to -6 and 6 to 13 um for fitting.
+  Fit the graphite in-plane thermal conductivity and the Au/graphite interfacial conductance.
+  Please report the fitted values and output the fitting plot.
+  Proceed directly to run the fit without asking for confirmation.

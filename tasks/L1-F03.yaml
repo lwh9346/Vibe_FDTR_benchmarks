@@ -1,0 +1,24 @@
+id: L1-F03
+description: Au(75nm)/graphite freqfit (out-of-plane k + TBC)
+data_file: L1F03benchmark_Au_graphite.txt
+timeout: 600
+outputs:
+  - file: result.yaml
+    compare: keyvalue
+    tolerance: 0.005
+    groundtruth:
+      Sz_2: 6.5
+      TBC_1: 90000000.0
+    units:
+      Sz_2: W m-1 K-1
+      TBC_1: W m-2 K-1
+prompt: >
+  I have a frequency-domain thermoreflectance dataset measured on an Au/graphite sample.
+  The sample consists of a 75 nm Au transducer on a semi-infinite graphite substrate.
+  The thermal conductivity and volumetric heat capacity of Au are 160 W m-1 K-1 and 2.49 MJ m-3 K-1.
+  The graphite substrate should be treated as anisotropic, with an in-plane thermal conductivity
+  of 1800 W m-1 K-1 and a volumetric heat capacity of 1.65 MJ m-3 K-1.
+  The effective spot size is 10.0 um.
+  Please use the provided phase-vs-frequency data at /app/data/L1F03benchmark_Au_graphite.txt
+  to fit the out-of-plane thermal conductivity of graphite and the thermal conductance of the Au/graphite interface.
+  Proceed directly to run the fit without asking for confirmation.

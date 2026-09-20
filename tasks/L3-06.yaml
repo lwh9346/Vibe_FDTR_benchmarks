@@ -1,0 +1,7 @@
+id: L3-06
+description: Sweep TBC to find reliable fitting range (Au/SiO2)
+timeout: 600
+prompt: >
+  For an Au/fused silica system, I want to know when the interfacial conductance can be reliably
+  fitted. Consider an Au transducer layer of 70 nm and a thermal conductivity of 150. Please work
+  in expert mode and consider the interfacial conductance from about 1e6 to 1e9 W/m^2K.

@@ -1,0 +1,24 @@
+id: L1-F01
+description: Au(70nm)/fused silica freqfit (Au k + TBC)
+data_file: L1F01benchmark_Au_SiO2.txt
+timeout: 600
+outputs:
+  - file: result.yaml
+    compare: keyvalue
+    tolerance: 0.005
+    groundtruth:
+      S_0: 145.0
+      TBC_1: 85000000.0
+    units:
+      S_0: W m-1 K-1
+      TBC_1: W m-2 K-1
+prompt: >
+  I have a frequency-domain thermoreflectance dataset measured on an Au/fused silica sample.
+  The sample consists of a 70 nm Au transducer on a semi-infinite fused silica substrate.
+  The volumetric heat capacity is 2.49 MJ m-3 K-1 for Au and 1.65 MJ m-3 K-1 for fused silica.
+  The thermal conductivity of fused silica is 1.38 W m-1 K-1.
+  The effective spot size is 3.0 um.
+  Please use the provided phase-vs-frequency data at /app/data/L1F01benchmark_Au_SiO2.txt
+  to fit the thermal conductivity of gold and the thermal conductance of the Au/fused silica interface.
+  Plot the fitted curve together with the original data.
+  Proceed directly to run the fit without asking for confirmation.

@@ -1,0 +1,55 @@
+# Vibe-FDTR-Bench 模型配置模板
+# 复制本文件为 models.yaml 并填入真实 api_key（models.yaml 已 gitignored）
+# 容器镜像 tag 见 configs/container.yaml
+
+# 模型 profile：CLI 用 -p/--profile <name> 选择，缺省读 default
+profiles:
+  deepseek-v4-pro:
+    provider: deepseek
+    api_key: <your-deepseek-api-key>
+    api_key_env: DEEPSEEK_API_KEY
+    endpoint: https://api.deepseek.com/v1
+    variant: max
+    opencode_env:
+      OPENCODE_MODEL: deepseek/deepseek-v4-pro
+    pricing:
+      cache_read: 0.003571    # ¥0.025/1M / 7
+      input: 0.428571         # ¥3/1M / 7
+      output: 0.857143        # ¥6/1M / 7
+
+  deepseek-v4-flash:
+    provider: deepseek
+    api_key: <your-deepseek-api-key>
+    api_key_env: DEEPSEEK_API_KEY
+    endpoint: https://api.deepseek.com/v1
+    variant: max
+    opencode_env:
+      OPENCODE_MODEL: deepseek/deepseek-v4-flash
+    pricing:
+      cache_read: 0.002857    # ¥0.02/1M / 7
+      input: 0.142857         # ¥1/1M / 7
+      output: 0.285714        # ¥2/1M / 7
+
+  glm-5.3-flash:
+    provider: openai-compatible
+    api_key: <your-bigmodel-api-key>
+    endpoint: https://open.bigmodel.cn/api/paas/v4
+    variant: max
+    opencode_env:
+      OPENCODE_MODEL: openai-compatible/glm-5.3-flash
+    pricing:                  # 限时5折价（2026-09-09 24:00 前），刊例价翻倍
+      cache_read: 0.016429    # ¥0.115/1M / 7（刊例 ¥0.23）
+      input: 0.057143         # ¥0.4/1M / 7（刊例 ¥0.8）
+      output: 0.200000        # ¥1.4/1M / 7（刊例 ¥2.8）
+
+  vllm-local:
+    provider: openai-compatible
+    api_key: na
+    endpoint: http://host:8000/v1
+    variant: max
+    opencode_env:
+      OPENCODE_MODEL: openai-compatible/qwen-27b
+    # pricing 省略则沿用 opencode 的 cost 列
+
+# 默认容器运行模型（opencode 跑任务时用，对应 -p 缺省值）
+default: deepseek-v4-pro

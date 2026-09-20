@@ -1,0 +1,7 @@
+id: L3-04
+description: Optimize Au transducer thickness for sapphire
+timeout: 600
+prompt: >
+  I want to measure the thermal conductivity of sapphire by FDTR. Please work in expert mode
+  and recommend the gold transducer layer thickness. Note that the interfacial conductance
+  (typically from 1e7-1e8) may also affect the signal.

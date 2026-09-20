@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info/
+
+# Virtual environment
+.venv/
+
+# Results (generated)
+results/
+benchmark_results/
+
+# Model config (contains api keys)
+configs/models.yaml
+
+# OS
+.DS_Store
+Thumbs.db

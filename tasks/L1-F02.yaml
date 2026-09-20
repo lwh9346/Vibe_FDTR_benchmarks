@@ -1,0 +1,26 @@
+id: L1-F02
+description: Au/Si freqfit (Au thickness + Si k + TBC)
+data_file: L1F02benchmark_Au_Si.txt
+timeout: 600
+outputs:
+  - file: result.yaml
+    compare: keyvalue
+    tolerance: 0.005
+    groundtruth:
+      d_0: 77.0
+      S_2: 110.0
+      TBC_1: 92000000.0
+    units:
+      d_0: nm
+      S_2: W m-1 K-1
+      TBC_1: W m-2 K-1
+prompt: >
+  I have a frequency-domain thermoreflectance dataset measured on an Au/Si sample.
+  The sample consists of an Au transducer on a semi-infinite Si substrate.
+  The volumetric heat capacities are 2.49 MJ m-3 K-1 for Au and 1.64 MJ m-3 K-1 for Si.
+  The thermal conductivity of Au is 140 W m-1 K-1.
+  The effective spot size is 3.0 um.
+  Please use the provided phase-vs-frequency data at /app/data/L1F02benchmark_Au_Si.txt
+  to fit the Au transducer thickness, the Si thermal conductivity, and the thermal conductance of the Au/Si interface.
+  Also save a csv file recording the original and fitted curves.
+  Proceed directly to run the fit without asking for confirmation.

@@ -1,0 +1,83 @@
+id: L1-S01
+description: Au(73nm)/SiO2 sensitivity (no fitting)
+data_file: L1F01benchmark_Au_SiO2.txt
+timeout: 600
+outputs:
+  - file: sensitivity.csv
+    compare: curve
+    groundtruth_csv: L1_S01_gt_sensitivity.csv
+    tolerance: 0.005
+    units:
+      frequency_Hz: Hz
+      S_2: dimensionless
+      TBC_1: dimensionless
+      d_0: dimensionless
+prompt: >
+  I have a two-layer Au/SiO2 FDTR sample model.
+  The sample consists of a 73 nm Au transducer on a semi-infinite SiO2 substrate.
+  The thermal conductivity and volumetric heat capacity are 200 W m-1 K-1 and 2.49 MJ m-3 K-1 for Au,
+  and 1.4 W m-1 K-1 and 1.65 MJ m-3 K-1 for SiO2, respectively.
+  The thermal conductance of the Au/SiO2 interface is 80 MW m-2 K-1.
+  The effective pump and probe spot sizes are 5.0 um and 3.5 um
+  (the effective combined spot size is 1/sqrt(1/5.0^2 + 1/3.5^2) ~= 2.867 um).
+  Please calculate the phase sensitivity over the provided frequency range to the SiO2 thermal conductivity,
+  the Au/SiO2 interface conductance, and the Au transducer thickness.
+  Use the frequency points from /app/data/L1F01benchmark_Au_SiO2.txt — do not override with a different range.
+  Plot the sensitivity curves in a single figure and save a csv file recording the curves.
+prompt_suffix:
+  minimal: >
+    You must implement the sensitivity computation numerically from scratch
+    (the fdtr CLI is not available).
+
+    ## Sensitivity definition
+
+    For a parameter p at frequency f, the phase sensitivity to p is:
+
+      sens(p, f) = [φ(p·(1+δ), f) - φ(p·(1-δ), f)] / [2·ln(1+δ)]
+
+    where δ is the relative perturbation (use δ = 0.01).
+    The three parameters p are: S_2 (SiO2 conductivity), TBC_1 (Au/SiO2 interface
+    conductance), d_0 (Au transducer thickness).
+
+    ## Phase computation (two-layer FDTR model)
+
+    The phase φ(f) at angular frequency ω = 2πf is:
+
+      φ(f) = -arg [ ∫₀^∞  k · exp(-k²·w²/8) / Y_surf(k,ω)  dk ]
+
+    where w = 1/√(1/w_pump² + 1/w_probe²) = 2.867 μm is the effective
+    1/e² spot radius, and Y_surf is the surface thermal admittance computed
+    by the recursive admittance method.
+
+    **Admittance recursion (bottom-up):**
+
+    Define admittance Yᵢ = Cᵢ·uᵢ where uᵢ = √(k² + iω/αᵢ), αᵢ = Sᵢ/Cᵢ.
+
+    Step 1 — Semi-infinite substrate (layer 2, SiO2):
+      Y₂ = C₂·√(k² + iω·C₂/S₂)
+
+    Step 2 — Interface conductance G_int (80e6 W/m²K) between layers 1 and 2:
+      Y_int = (Y₂ · G_int) / (Y₂ + G_int)
+
+    Step 3 — Au transducer (layer 1, thickness d₁=73 nm):
+      Y₁ = C₁·√(k² + iω·C₁/S₁)
+      Y_surf = Y₁ · [Y_int + Y₁·tanh(u₁·d₁)] / [Y₁ + Y_int·tanh(u₁·d₁)]
+
+    Material values:
+      Au:  S₁=200 W/mK,  C₁=2.49e6 J/m³K,  d₁=73e-9 m
+      SiO2: S₂=1.4 W/mK,  C₂=1.65e6 J/m³K
+
+    ## Numerical integration
+
+    Use scipy.integrate.quad. The Gaussian factor exp(-k²·w²/8) ensures
+    convergence. Integrate k from 0 to ~6/w (where the factor ≈ 1e-11).
+
+    ## Frequency range
+
+    Use the exact frequency values from /app/data/L1F01benchmark_Au_SiO2.txt.
+    Do NOT choose a different frequency range.
+
+    ## Output format
+
+    Save to /app/sensitivity.csv with columns: frequency_Hz, S_2, TBC_1, d_0.
+    Each row is one frequency point.

@@ -1,0 +1,20 @@
+tier_prefix:
+  # code 层：fdtr 包已装在 uv 虚拟环境，源码可读，但必须经 uv run 调用
+  code: >
+    Environment: /app is a uv-managed Python project. The Vibe-FDTR package is
+    already installed in the project's virtual environment, and its source code
+    is available under /app/src.
+
+  full: Read the CLAUDE.md file.
+
+  # minimal 层：无 fdtr 包/CLI，仅有科学计算包，需从零实现
+  minimal: >
+    Environment: the working directory /app contains a uv-managed virtual
+    environment where numpy, scipy and matplotlib are available.
+    Use /app/.venv/bin/python (NOT just "python") to access these packages.
+
+# tier_suffix：层级通用后缀
+tier_suffix:
+  minimal: ""
+  code: ""
+  full: ""

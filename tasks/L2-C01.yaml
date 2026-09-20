@@ -1,0 +1,26 @@
+id: L2-C01
+description: Sensitivity calculation + freqfit (room-temp, freq-range subset)
+data_dirs:
+  - L2_HOPGA
+timeout: 900
+outputs:
+  - file: result.yaml
+    compare: keyvalue
+    tolerance: 0.005
+    groundtruth:
+      Sz_2: 6.2782
+      TBC_1: 90610000.0
+    units:
+      Sz_2: W m-1 K-1
+      TBC_1: W m-2 K-1
+prompt: >
+  I have room-temperature FDTR data for the Au/graphite sample stored in the folder /app/data/L2_HOPGA.
+  Please use the Gold_film material for Au properties and Graphite_new material for graphite properties.
+  The effective spot size is 2.75 um. The thickness of Au is 73 nm.
+
+
+  Using the nominal parameter values, first calculate the phase sensitivity over the whole frequency range.
+  Then use the data in the frequency range from 1e5 to 2e7 Hz to fit the graphite out-of-plane thermal
+  conductivity and the Au/graphite interfacial conductance.
+  Please report the fitted values and output both the sensitivity plot and the fitting plot.
+  Proceed directly to run the fit without asking for confirmation.

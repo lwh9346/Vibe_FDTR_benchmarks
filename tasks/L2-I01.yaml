@@ -1,0 +1,33 @@
+id: L2-I01
+description: Spot-size fit (amplitude) + freqfit (room-temp, highest freq)
+data_dirs:
+  - L2_HOPGA
+timeout: 900
+outputs:
+  - file: result.yaml
+    compare: keyvalue
+    tolerance: 0.005
+    groundtruth:
+      spot_x: 2.8068
+      spot_y: 2.7999
+      Sz_2: 6.2309
+      TBC_1: 92920000.0
+    units:
+      spot_x: um
+      spot_y: um
+      Sz_2: W m-1 K-1
+      TBC_1: W m-2 K-1
+prompt: >
+  I have room-temperature FDTR data for the Au/graphite sample stored in the folder /app/data/L2_HOPGA.
+  Please use the Gold_film material for Au properties and Graphite_new material for graphite properties.
+  The thickness of Au is 73 nm. Set the in-plane conductivity of graphite to be 1800 W m-1 K-1.
+
+
+  First, use the FWHM of the corresponding averaged offset-amplitude data at the highest frequency
+  to fit the spot sizes in x and y directions while keeping the thermal properties fixed to their nominal values.
+  Calculate the effective spot size by averaging the x and y spot sizes.
+  Then fix the effective spot size and use the phase-frequency data to fit the graphite out-of-plane thermal
+  conductivity and the Au/graphite interface conductance.
+  Please report the fitted spot size, the fitted out-of-plane thermal conductivity
+  and output the fitting plots for both steps.
+  Proceed directly to run the fit without asking for confirmation.

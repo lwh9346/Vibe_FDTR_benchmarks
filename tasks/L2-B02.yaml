@@ -1,0 +1,124 @@
+id: L2-B02
+description: Batch temp-dependent iterative fitting (9 temps, spot calibration, convergence)
+data_dirs:
+  - L2_HOPGA
+timeout: 900
+outputs:
+  - file: result.yaml
+    compare: keyvalue
+    tolerance: 0.005
+    groundtruth:
+      spot_x: 2.7786
+      spot_y: 2.7714
+      effective_spot_size: 2.7750
+      HOPGA_at_m105C_Sr_2: 2807.0076
+      HOPGA_at_m105C_Sz_2: 9.7106
+      HOPGA_at_m105C_TBC_1: 72249000.0
+      HOPGA_at_m90C_Sr_2: 3053.4074
+      HOPGA_at_m90C_Sz_2: 8.9896
+      HOPGA_at_m90C_TBC_1: 73489000.0
+      HOPGA_at_m60C_Sr_2: 2767.3511
+      HOPGA_at_m60C_Sz_2: 7.6211
+      HOPGA_at_m60C_TBC_1: 78962000.0
+      HOPGA_at_m30C_Sr_2: 2320.3100
+      HOPGA_at_m30C_Sz_2: 7.3676
+      HOPGA_at_m30C_TBC_1: 80037000.0
+      HOPGA_at_0C_Sr_2: 2010.5620
+      HOPGA_at_0C_Sz_2: 6.3889
+      HOPGA_at_0C_TBC_1: 89642000.0
+      HOPGA_at_22C_Sr_2: 1823.1113
+      HOPGA_at_22C_Sz_2: 5.9295
+      HOPGA_at_22C_TBC_1: 94779300.0
+      HOPGA_at_60C_Sr_2: 1601.0741
+      HOPGA_at_60C_Sz_2: 5.0144
+      HOPGA_at_60C_TBC_1: 103280000.0
+      HOPGA_at_90C_Sr_2: 1406.7378
+      HOPGA_at_90C_Sz_2: 4.6963
+      HOPGA_at_90C_TBC_1: 112410000.0
+      HOPGA_at_120C_Sr_2: 1301.7200
+      HOPGA_at_120C_Sz_2: 4.1272
+      HOPGA_at_120C_TBC_1: 122470000.0
+    units:
+      spot_x: um
+      spot_y: um
+      effective_spot_size: um
+      HOPGA_at_m105C_Sr_2: W m-1 K-1
+      HOPGA_at_m105C_Sz_2: W m-1 K-1
+      HOPGA_at_m105C_TBC_1: W m-2 K-1
+      HOPGA_at_m90C_Sr_2: W m-1 K-1
+      HOPGA_at_m90C_Sz_2: W m-1 K-1
+      HOPGA_at_m90C_TBC_1: W m-2 K-1
+      HOPGA_at_m60C_Sr_2: W m-1 K-1
+      HOPGA_at_m60C_Sz_2: W m-1 K-1
+      HOPGA_at_m60C_TBC_1: W m-2 K-1
+      HOPGA_at_m30C_Sr_2: W m-1 K-1
+      HOPGA_at_m30C_Sz_2: W m-1 K-1
+      HOPGA_at_m30C_TBC_1: W m-2 K-1
+      HOPGA_at_0C_Sr_2: W m-1 K-1
+      HOPGA_at_0C_Sz_2: W m-1 K-1
+      HOPGA_at_0C_TBC_1: W m-2 K-1
+      HOPGA_at_22C_Sr_2: W m-1 K-1
+      HOPGA_at_22C_Sz_2: W m-1 K-1
+      HOPGA_at_22C_TBC_1: W m-2 K-1
+      HOPGA_at_60C_Sr_2: W m-1 K-1
+      HOPGA_at_60C_Sz_2: W m-1 K-1
+      HOPGA_at_60C_TBC_1: W m-2 K-1
+      HOPGA_at_90C_Sr_2: W m-1 K-1
+      HOPGA_at_90C_Sz_2: W m-1 K-1
+      HOPGA_at_90C_TBC_1: W m-2 K-1
+      HOPGA_at_120C_Sr_2: W m-1 K-1
+      HOPGA_at_120C_Sz_2: W m-1 K-1
+      HOPGA_at_120C_TBC_1: W m-2 K-1
+prompt: >
+  I have temperature-dependent FDTR data for the Au/graphite sample stored in the folder /app/data/L2_HOPGA.
+  Please use the Gold_film material for Au properties and Graphite_new material for graphite properties.
+  The thickness of Au is 73 nm.
+
+
+  Please perform the following iterative fitting workflow for room-temperature data first:
+
+
+  1. Use the averaged offset-amplitude data at the highest modulation frequency to fit the spot sizes
+  in the x and y directions. In this step, keep the thermal properties fixed to their current values.
+  For the first iteration, use the nominal thermal properties. For later iterations, use the updated
+  thermal properties from the previous iteration. Calculate the effective spot size as the average of
+  the fitted x- and y-direction spot sizes.
+
+
+  2. Use the fitted x-direction spot size and the averaged x-direction offset-phase data to fit the
+  graphite in-plane thermal conductivity. Choose the data measured at frequency 1 MHz.
+
+
+  3. Use the fitted effective spot size and the averaged phase-frequency data to fit the graphite
+  out-of-plane thermal conductivity and the Au/graphite interfacial thermal conductance.
+
+
+  4. After each iteration, update the fitted spot sizes, graphite in-plane thermal conductivity, graphite
+  out-of-plane thermal conductivity, and Au/graphite interfacial thermal conductance. Repeat steps 1-3 until
+  both the fitted graphite in-plane and out-of-plane thermal conductivities change by less than 1% between
+  two consecutive iterations, or until 6 iterations have been completed.
+
+
+  Then for data measured at other temperature, use the following workflow:
+
+
+  5. Fix the x-direction spot size to the final room-temperature x-direction spot size, and use the averaged
+  x-direction offset-phase data to fit the graphite in-plane thermal conductivity. Choose the data measured
+  at frequency 1 MHz.
+
+
+  6. Fix the effective spot size to the final room-temperature effective spot size, and use the averaged
+  phase-frequency data to fit the graphite out-of-plane thermal conductivity and the Au/graphite interfacial
+  thermal conductance.
+
+
+  7. Update the fitted thermal parameters after each iteration. Repeat steps 1-2 until both the graphite
+  in-plane and out-of-plane thermal conductivities change by less than 2% between two consecutive iterations,
+  or until 6 iterations have been completed.
+
+
+  Please report the room-temperature fitted spot sizes, the fitted thermal parameters at each temperature,
+  and the final converged values. Summarize the temperature-dependent graphite in-plane thermal conductivity,
+  graphite out-of-plane thermal conductivity, and Au/graphite interfacial thermal conductances in a table.
+  Plot the graphite in-plane and out-of-plane thermal conductivities as functions of temperature in separate figures.
+  Proceed directly to run the fit without asking for confirmation.

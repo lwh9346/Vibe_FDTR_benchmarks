@@ -1,0 +1,8 @@
+id: L3-05
+description: Optimize spot size and frequency range for graphite (freq-only)
+timeout: 600
+prompt: >
+  I want to measure both the in-plane and out-of-plane thermal conductivity of graphite using
+  FDTR with an Au transducer of 70 nm and a thermal conductivity of 150. Use only the frequency
+  sweep measurement method. Please work in expert mode and recommend the spot size and frequency
+  ranges for FDTR measurements and the corresponding fitting setup I should use.

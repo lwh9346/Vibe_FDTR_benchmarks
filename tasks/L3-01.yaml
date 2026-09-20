@@ -1,0 +1,7 @@
+id: L3-01
+description: Design isotropic-substrate FDTR workflow (Au/diamond)
+timeout: 600
+prompt: >
+  I want to measure the thermal conductivity of diamond using FDTR with an Au transducer
+  of 70 nm and a thermal conductivity of 150. Please work in expert mode and recommend
+  what FDTR measurements and the corresponding fitting setup I should use.

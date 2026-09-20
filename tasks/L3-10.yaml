@@ -1,0 +1,28 @@
+id: L3-10
+description: Integrated expert workflow for Au/BN/Si
+data_dirs:
+  - L3_Au_BN_Si
+data_file: L3_Au_BN_Si/L3benchmark_Au_BN_Si.txt
+timeout: 600
+outputs:
+  - file: result.yaml
+    compare: keyvalue
+    tolerance: 0.005
+    groundtruth:
+      Sr_2: 410.0
+      Sz_2: 2.5
+      TBC_1: 78000000.0
+      TBC_3: 80000000.0
+    units:
+      Sr_2: W m-1 K-1
+      Sz_2: W m-1 K-1
+      TBC_1: W m-2 K-1
+      TBC_3: W m-2 K-1
+prompt: >
+  I have a frequency-domain thermoreflectance dataset in /app/data/L3_Au_BN_Si which is measured
+  on an Au/BN/Si sample. The sample consists of a 73 nm Au transducer, a 100 nm BN film, and a
+  semi-infinite Si substrate. The thermal conductivity and volumetric heat capacity are
+  170 W m-1 K-1 and 2.49 MJ m-3 K-1 for Au, and 110 W m-1 K-1 and 1.64 MJ m-3 K-1 for Si.
+  The heat capacity for BN is 1.8 MJ m-3 K-1.
+  Work in expert mode and fit the anisotropic thermal conductivity of the BN film.
+  Proceed directly to run the fit without asking for confirmation.

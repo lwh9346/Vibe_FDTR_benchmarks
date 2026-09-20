@@ -1,0 +1,26 @@
+id: L1-F04
+description: Au(73nm)/BN(100nm)/Si freqfit (BN k + Au/BN TBC)
+data_file: L1F04benchmark_Au_BN_Si.txt
+timeout: 600
+outputs:
+  - file: result.yaml
+    compare: keyvalue
+    tolerance: 0.005
+    groundtruth:
+      Sr_2: 410.0
+      TBC_1: 78000000.0
+    units:
+      Sr_2: W m-1 K-1
+      TBC_1: W m-2 K-1
+prompt: >
+  I have a frequency-domain thermoreflectance dataset measured on an Au/BN/Si sample.
+  The sample consists of a 73 nm Au transducer, a 100 nm BN film, and a semi-infinite Si substrate.
+  The thermal conductivity and volumetric heat capacity are 170 W m-1 K-1 and 2.49 MJ m-3 K-1 for Au,
+  and 110 W m-1 K-1 and 1.64 MJ m-3 K-1 for Si.
+  The heat capacity for BN is 1.8 MJ m-3 K-1 and the out-of-plane conductivity is 2.5 W m-1 K-1.
+  The thermal conductance of the BN/Si interface is 80 MW m-2 K-1.
+  The effective spot size is 5.0 um.
+  Please use the provided phase-vs-frequency data at /app/data/L1F04benchmark_Au_BN_Si.txt
+  to fit the in-plane thermal conductivity of the BN film and the Au/BN conductance.
+  Plot the fitted curve together with the original data and also a csv file recording the original and fitted curves.
+  Proceed directly to run the fit without asking for confirmation.

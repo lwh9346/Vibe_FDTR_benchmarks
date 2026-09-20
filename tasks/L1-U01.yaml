@@ -1,0 +1,29 @@
+id: L1-U01
+description: Au/graphite/Si uncertainty (no fitting)
+data_file: L1F01benchmark_Au_SiO2.txt
+timeout: 600
+outputs:
+  - file: result.yaml
+    compare: keyvalue
+    tolerance: 0.005
+    groundtruth:
+      Sr_2_pct: 26.77
+      Sz_2_pct: 13.75
+    units:
+      Sr_2_pct: "%"
+      Sz_2_pct: "%"
+prompt: >
+  Assume I have a FDTR fit result using phase-vs-frequency data and want to calculate the uncertainty.
+  The frequency range is 5e4-2e7 Hz and the fit target is the graphite in-plane and out-of-plane thermal conductivity.
+  The sample consists of a 73 nm Au transducer, a 50 nm graphite film, and a semi-infinite Si substrate.
+  The thermal conductivity and volumetric heat capacity are 155 W m-1 K-1 and 2.49 MJ m-3 K-1 for Au.
+  Graphite is anisotropic, with an in-plane thermal conductivity of 1800 W m-1 K-1,
+  an out-of-plane thermal conductivity of 2.0 W m-1 K-1, and a volumetric heat capacity of 1.65 MJ m-3 K-1.
+  The Si substrate has a thermal conductivity of 130 W m-1 K-1 and a volumetric heat capacity of 1.64 MJ m-3 K-1.
+  The thermal conductance is 80 MW m-2 K-1 for the Au/graphite interface
+  and 60 MW m-2 K-1 for the graphite/Si interface.
+  The effective spot size is 3 um.
+
+  Calculate the uncertainty of the fit targets.
+  Assume a 10% uncertainty for the two interfacial thermal conductances
+  and 4% uncertainty for all other fixed parameters.

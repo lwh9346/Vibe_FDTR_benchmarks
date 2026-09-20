@@ -1,0 +1,8 @@
+id: L3-03
+description: Design Au/film/substrate workflow (Au/graphene/Si)
+timeout: 600
+prompt: >
+  I want to design an FDTR experiment for an Au/graphene/Si sample. The main targets are
+  the film in-plane and out-of-plane thermal conductivity. The film is 100 nm thick, and
+  the Au transducer is 70 nm thick with a thermal conductivity of 150. Please work in expert
+  mode and recommend what FDTR measurements and the corresponding fitting setup I should use.

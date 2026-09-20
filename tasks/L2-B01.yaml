@@ -1,0 +1,58 @@
+id: L2-B01
+description: Batch temp-dependent freqfit (9 temps, -105 to 120C, in-plane k only)
+data_dirs:
+  - L2_HOPGA
+timeout: 900
+outputs:
+  - file: result.yaml
+    compare: keyvalue
+    tolerance: 0.005
+    groundtruth:
+      HOPGA_at_m105C_Sr_2: 2507.2162
+      HOPGA_at_m105C_TBC_1: 70288000.0
+      HOPGA_at_m90C_Sr_2: 2745.0700
+      HOPGA_at_m90C_TBC_1: 71649000.0
+      HOPGA_at_m60C_Sr_2: 2500.3408
+      HOPGA_at_m60C_TBC_1: 76361000.0
+      HOPGA_at_m30C_Sr_2: 2280.2872
+      HOPGA_at_m30C_TBC_1: 80068000.0
+      HOPGA_at_0C_Sr_2: 1978.8122
+      HOPGA_at_0C_TBC_1: 89746000.0
+      HOPGA_at_22C_Sr_2: 1820.7498
+      HOPGA_at_22C_TBC_1: 95953000.0
+      HOPGA_at_60C_Sr_2: 1575.3799
+      HOPGA_at_60C_TBC_1: 103140000.0
+      HOPGA_at_90C_Sr_2: 1413.5964
+      HOPGA_at_90C_TBC_1: 115450000.0
+      HOPGA_at_120C_Sr_2: 1264.9319
+      HOPGA_at_120C_TBC_1: 119140000.0
+    units:
+      HOPGA_at_m105C_Sr_2: W m-1 K-1
+      HOPGA_at_m105C_TBC_1: W m-2 K-1
+      HOPGA_at_m90C_Sr_2: W m-1 K-1
+      HOPGA_at_m90C_TBC_1: W m-2 K-1
+      HOPGA_at_m60C_Sr_2: W m-1 K-1
+      HOPGA_at_m60C_TBC_1: W m-2 K-1
+      HOPGA_at_m30C_Sr_2: W m-1 K-1
+      HOPGA_at_m30C_TBC_1: W m-2 K-1
+      HOPGA_at_0C_Sr_2: W m-1 K-1
+      HOPGA_at_0C_TBC_1: W m-2 K-1
+      HOPGA_at_22C_Sr_2: W m-1 K-1
+      HOPGA_at_22C_TBC_1: W m-2 K-1
+      HOPGA_at_60C_Sr_2: W m-1 K-1
+      HOPGA_at_60C_TBC_1: W m-2 K-1
+      HOPGA_at_90C_Sr_2: W m-1 K-1
+      HOPGA_at_90C_TBC_1: W m-2 K-1
+      HOPGA_at_120C_Sr_2: W m-1 K-1
+      HOPGA_at_120C_TBC_1: W m-2 K-1
+prompt: >
+  I have temperature-dependent FDTR data for the Au/graphite sample stored in the folder /app/data/L2_HOPGA.
+  Please use the Gold_film material for Au properties and Graphite_new material for graphite properties.
+  The effective spot size is 2.75 um. The thickness of Au is 73 nm.
+
+
+  For each temperature, use the phase-frequency data to fit the graphite in-plane thermal conductivity
+  and the Au/graphite interfacial conductance.
+  Please summarize the fitted values at all temperatures in a table
+  and plot the temperature-dependent graphite in-plane thermal conductivity and interface conductance.
+  Proceed directly to run the fit without asking for confirmation.

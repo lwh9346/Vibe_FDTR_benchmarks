@@ -1,0 +1,8 @@
+id: L3-07
+description: Sweep film k/thickness for identifiability (Au/film/SiC)
+timeout: 600
+prompt: >
+  Consider an Au/thin film/SiC system. Consider a typical heat capacity for the thin film.
+  I want to know under what film thickness and thermal-conductivity conditions FDTR can separately
+  extract film conductivity and interface conductance. Please work in expert mode, then tell me
+  when I should fit, fix the interface conductance.
